@@ -1,14 +1,14 @@
 # 環境構築手順
-・環境資材をgitからコピー
-・dockerビルド
+- 環境資材をgitからコピー
+- dockerビルド
 ```
 docker-compose up --build -d
 ```
-・appコンテナに接続
+- appコンテナに接続
 ```
 docker exec -it symfony7project_app_1 bash
 ```
-・マイグレーション実行
+- マイグレーション実行
 ```
 php bin/console doctrine:migrations:migrate
 ```
