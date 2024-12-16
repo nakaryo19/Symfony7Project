@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Welcome{% endblock %}</title>
+    {% block stylesheets %}
+        <link href="{{ asset('css/base.css') }}" rel="stylesheet" />
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <h1>My Symfony App</h1>
+        {% if app.user %}
+            <form action="{{ path('_logout_main') }}" method="post" style="display: inline;">
+                <button type="submit">ログアウト</button>
+            </form>
+        {% endif %}
+    </header>
+
+    <main>
+        {% block body %}{% endblock %}
+    </main>
+
+    <footer>
+        &copy; {{ "now"|date("Y") }} My Symfony App. All rights reserved.
+    </footer>
+</body>
+</html>

@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./symfony7_app:/var/www/symfony7_app
+    networks:
+      - symfony_network
+
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./symfony7_app:/var/www/symfony7_app
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "80:80"
+    networks:
+      - symfony_network
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: app
+    ports:
+      - "5433:5432"
+    networks:
+      - symfony_network
+
+networks:
+  symfony_network:
+    driver: bridge
