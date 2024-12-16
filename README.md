@@ -1,7 +1,5 @@
 # 環境構築手順
 ・環境資材をgitからコピー
-```
-```
 ・dockerビルド
 ```
 docker-compose up --build -d
